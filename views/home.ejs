@@ -68,27 +68,26 @@
           color: aliceblue;
           box-sizing: border-box;
           font-family: "Poppins", sans-serif;
-
           background-image: linear-gradient(45deg, #000, #f00);
-
         }
 
         #main {
-          flex-direction: column;
-
+          display: flex;
+          flex-direction: row;
+          justify-content: center;
+          flex-wrap: wrap;
         }
 
         button {
           background-color: white;
           border: none;
+          height: 70px;
           margin: 10px;
           padding: 20px;
           border-radius: 10px;
           width: 500px;
           font-size: 1rem;
           font-weight: bold;
-
-
         }
 
         button:hover {
@@ -102,7 +101,7 @@
 
         <!-- Your logo goes here -->
 
-        <div class="flex flex-row">
+     
           <button type=" button" onclick="doSomething('1')">What is Zoho People Plus (ZPP)?</button>
           <button type="button" onclick="doSomething('2')"> What functionalities are included in Zoho People
             Plus?</button>
@@ -110,8 +109,6 @@
             processes?</button>
           <button type="button" onclick="doSomething('4')">What are the benefits of Cliq and Connect in ZPP?</button>
           <button type="button" onclick="doSomething('5')">How can Zoho Payroll help businesses? </button>
-        </div>
-        <div class="flex flex-row-reverse">
           <button type="button" onclick="doSomething('6')">What is the purpose of Vault in Zoho People Plus? </button>
           <button type="button" onclick="doSomething('7')">How does Zoho People Plus contribute to exceptional employee
             experiences?</button>
@@ -121,13 +118,18 @@
           </button>
           <button type="button" onclick="doSomething('10')">How can an organization get started with Zoho People Plus?
           </button>
-        </div>
+          <button type="button" onclick="askAQuestion()">Ask a question?
+          </button>
       </section>
 
       <script>
         var socket = io.connect();
         function doSomething(value) {
           socket.emit("sendNum", value);
+        }
+        function askAQuestion(){
+          console.log('triggered')
+          socket.emit("triggerMicButton");
         }
       </script>
     </body>
