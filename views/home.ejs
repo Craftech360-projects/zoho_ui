@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Zoho Chat Bot</title>
+  <link rel="shortcut icon" href="#" />
+  <script src="/socket.io/socket.io.js"></script>
+  <style>
+    html,
+    body {
+      width: 100%;
+      height: 100%;
+      padding: 0;
+      margin: 0;
+      overflow: hidden;
+      position: fixed;
+      background-color: black;
+      color: aliceblue;
+      box-sizing: border-box;
+      font-family: "Poppins", sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    #main {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    button {
+      background-color: white;
+      border: none;
+      margin: 10px;
+      padding: 20px;
+      border-radius: 10px;
+      width: 200px;
+    }
+  </style>
+</head>
+
+<body>
+  <section id="main">
+    <!DOCTYPE html>
+    <html lang="en">
+
+    <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+      <title>Zoho Chat Bot</title>
+      <link rel="shortcut icon" href="#" />
+      <script src="/socket.io/socket.io.js"></script>
+      <style>
+        html,
+        body {
+          width: 100%;
+          height: 100%;
+          padding: 0;
+          margin: 0;
+          overflow: hidden;
+          position: absolute;
+          background-color: black;
+          color: aliceblue;
+          box-sizing: border-box;
+          font-family: "Poppins", sans-serif;
+
+          background-image: linear-gradient(45deg, #000, #f00);
+
+        }
+
+        #main {
+          flex-direction: column;
+
+        }
+
+        button {
+          background-color: white;
+          border: none;
+          margin: 10px;
+          padding: 20px;
+          border-radius: 10px;
+          width: 500px;
+          font-size: 1rem;
+          font-weight: bold;
+
+
+        }
+
+        button:hover {
+          background-color: #5fbf87;
+        }
+      </style>
+    </head>
+
+    <body>
+      <section id="main">
+
+        <!-- Your logo goes here -->
+
+        <div class="flex flex-row">
+          <button type=" button" onclick="doSomething('1')">What is Zoho People Plus (ZPP)?</button>
+          <button type="button" onclick="doSomething('2')"> What functionalities are included in Zoho People
+            Plus?</button>
+          <button type="button" onclick="doSomething('3')">How can Recruit, People, and Expense help HR
+            processes?</button>
+          <button type="button" onclick="doSomething('4')">What are the benefits of Cliq and Connect in ZPP?</button>
+          <button type="button" onclick="doSomething('5')">How can Zoho Payroll help businesses? </button>
+        </div>
+        <div class="flex flex-row-reverse">
+          <button type="button" onclick="doSomething('6')">What is the purpose of Vault in Zoho People Plus? </button>
+          <button type="button" onclick="doSomething('7')">How does Zoho People Plus contribute to exceptional employee
+            experiences?</button>
+          <button type="button" onclick="doSomething('8')">Can Zoho People Plus be customized for different
+            organizations? </button>
+          <button type="button" onclick="doSomething('9')">Is Zoho People Plus suitable for all business sizes?
+          </button>
+          <button type="button" onclick="doSomething('10')">How can an organization get started with Zoho People Plus?
+          </button>
+        </div>
+      </section>
+
+      <script>
+        var socket = io.connect();
+        function doSomething(value) {
+          socket.emit("sendNum", value);
+        }
+      </script>
+    </body>
+
+    </html>
+    </button>
+    <!-- <button type="button" onclick="doSomething('2')">2</button>
+    <button type="button" onclick="doSomething('3')">3</button>
+    <button type="button" onclick="doSomething('4')">4</button>
+    <button type="button" onclick="doSomething('5')">5</button> -->
+  </section>
+  <script>
+    var socket = io.connect();
+    function doSomething(value) {
+      socket.emit("sendNum", value);
+    }
+  </script>
+</body>
+
+</html>
