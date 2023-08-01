@@ -1,152 +1,365 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-  <title>Zoho Chat Bot</title>
-  <link rel="shortcut icon" href="#" />
-  <script src="/socket.io/socket.io.js"></script>
-  <style>
-    html,
-    body {
-      width: 100%;
-      height: 100%;
-      padding: 0;
-      margin: 0;
-      overflow: hidden;
-      position: fixed;
-      background-color: black;
-      color: aliceblue;
-      box-sizing: border-box;
-      font-family: "Poppins", sans-serif;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-
-    #main {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-
-    button {
-      background-color: white;
-      border: none;
-      margin: 10px;
-      padding: 20px;
-      border-radius: 10px;
-      width: 200px;
-    }
-  </style>
-</head>
-
-<body>
-  <section id="main">
-    <!DOCTYPE html>
-    <html lang="en">
-
     <head>
-      <meta charset="UTF-8" />
-      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-      <title>Zoho Chat Bot</title>
-      <link rel="shortcut icon" href="#" />
-      <script src="/socket.io/socket.io.js"></script>
-      <style>
-        html,
-        body {
-          width: 100%;
-          height: 100%;
-          padding: 0;
-          margin: 0;
-          overflow: hidden;
-          position: absolute;
-          background-color: black;
-          color: aliceblue;
-          box-sizing: border-box;
-          font-family: "Poppins", sans-serif;
-          background-image: linear-gradient(45deg, #000, #f00);
-        }
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
+        <title>Zoho Chat Bot</title>
+        <link rel="shortcut icon" href="#" />
+        <script src="/socket.io/socket.io.js"></script>
+        <style>
+            html,
+            body {
+                width: 100%;
+                height: 100%;
+                padding: 0;
+                margin: 0;
+                overflow: hidden;
+                position: fixed;
+                background-color: black;
+                color: aliceblue;
+                box-sizing: border-box;
+                font-family: 'Poppins', sans-serif;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
 
-        #main {
-          display: flex;
-          flex-direction: row;
-          justify-content: center;
-          flex-wrap: wrap;
-        }
+            #main {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
 
-        button {
-          background-color: white;
-          border: none;
-          height: 70px;
-          margin: 10px;
-          padding: 20px;
-          border-radius: 10px;
-          width: 500px;
-          font-size: 1rem;
-          font-weight: bold;
-        }
-
-        button:hover {
-          background-color: #5fbf87;
-        }
-      </style>
+            button {
+                background-color: white;
+                border: none;
+                margin: 10px;
+                padding: 20px;
+                border-radius: 10px;
+                width: 200px;
+            }
+        </style>
     </head>
 
     <body>
-      <section id="main">
+        <section id="main">
+            <!DOCTYPE html>
+            <html lang="en">
+                <head>
+                    <meta charset="UTF-8" />
+                    <meta
+                        name="viewport"
+                        content="width=device-width, initial-scale=1.0"
+                    />
+                    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+                    <title>Zoho Chat Bot</title>
+                    <link rel="shortcut icon" href="#" />
+                    <script src="/socket.io/socket.io.js"></script>
+                    <style>
+                        html,
+                        body {
+                            width: 100%;
+                            height: 100%;
+                            padding: 0;
+                            margin: 0;
+                            overflow: hidden;
+                            position: absolute;
+                            background-color: black;
+                            color: aliceblue;
+                            box-sizing: border-box;
+                            font-family: 'Poppins', sans-serif;
+                            background-image: linear-gradient(
+                                45deg,
+                                #000,
+                                #f00
+                            );
+                        }
 
-        <!-- Your logo goes here -->
+                        #main {
+                            display: flex;
+                            flex-direction: row;
+                            justify-content: center;
+                            flex-wrap: wrap;
+                        }
 
-     
-          <button type=" button" onclick="doSomething('1')">What is Zoho People Plus (ZPP)?</button>
-          <button type="button" onclick="doSomething('2')"> What functionalities are included in Zoho People
-            Plus?</button>
-          <button type="button" onclick="doSomething('3')">How can Recruit, People, and Expense help HR
-            processes?</button>
-          <button type="button" onclick="doSomething('4')">What are the benefits of Cliq and Connect in ZPP?</button>
-          <button type="button" onclick="doSomething('5')">How can Zoho Payroll help businesses? </button>
-          <button type="button" onclick="doSomething('6')">What is the purpose of Vault in Zoho People Plus? </button>
-          <button type="button" onclick="doSomething('7')">How does Zoho People Plus contribute to exceptional employee
-            experiences?</button>
-          <button type="button" onclick="doSomething('8')">Can Zoho People Plus be customized for different
-            organizations? </button>
-          <button type="button" onclick="doSomething('9')">Is Zoho People Plus suitable for all business sizes?
-          </button>
-          <button type="button" onclick="doSomething('10')">How can an organization get started with Zoho People Plus?
-          </button>
-          <button type="button" onclick="askAQuestion()">Ask a question?
-          </button>
-      </section>
+                        button {
+                            background-color: white;
+                            border: none;
+                            height: 70px;
+                            margin: 10px;
+                            padding: 20px;
+                            border-radius: 10px;
+                            width: 500px;
+                            font-size: 1rem;
+                            font-weight: bold;
+                        }
 
-      <script>
-        var socket = io.connect();
-        function doSomething(value) {
-          socket.emit("sendNum", value);
-        }
-        function askAQuestion(){
-          console.log('triggered')
-          socket.emit("triggerMicButton");
-        }
-      </script>
+                        button:hover {
+                            background-color: #5fbf87;
+                        }
+                    </style>
+                </head>
+
+                <body>
+                    <section id="main">
+                        <!-- Your logo goes here -->
+
+                        <button type=" button" onclick="doSomething('1')">
+                            What is Zoho People Plus (ZPP)?
+                        </button>
+                        <button type="button" onclick="doSomething('2')">
+                            What functionalities are included in Zoho People
+                            Plus?
+                        </button>
+                        <button type="button" onclick="doSomething('3')">
+                            How can Recruit, People, and Expense help HR
+                            processes?
+                        </button>
+                        <button type="button" onclick="doSomething('4')">
+                            What are the benefits of Cliq and Connect in ZPP?
+                        </button>
+                        <button type="button" onclick="doSomething('5')">
+                            How can Zoho Payroll help businesses?
+                        </button>
+                        <button type="button" onclick="doSomething('6')">
+                            What is the purpose of Vault in Zoho People Plus?
+                        </button>
+                        <button type="button" onclick="doSomething('7')">
+                            How does Zoho People Plus contribute to exceptional
+                            employee experiences?
+                        </button>
+                        <button type="button" onclick="doSomething('8')">
+                            Can Zoho People Plus be customized for different
+                            organizations?
+                        </button>
+                        <button type="button" onclick="doSomething('9')">
+                            Is Zoho People Plus suitable for all business sizes?
+                        </button>
+                        <button type="button" onclick="doSomething('10')">
+                            How can an organization get started with Zoho People
+                            Plus?
+                        </button>
+                        <button
+                            type="button"
+                            id="askQuestion"
+                            onclick="askAQuestion()"
+                        >
+                            Ask a question
+                        </button>
+                        <button
+                            type="button"
+                            hidden
+                            id="stopRecord"
+                            onclick="stopRecording()"
+                        >
+                            Click to Stop Recording
+                        </button>
+                    </section>
+                    <div id="voiceData"></div>
+
+                    <script>
+                        const environment = {
+                            supabase: {
+                                url: 'https://jypkclsiqvkatajjvltb.supabase.co',
+                                key: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imp5cGtjbHNpcXZrYXRhamp2bHRiIiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTAwMTQ1OTcsImV4cCI6MjAwNTU5MDU5N30.hGY8ddFue0f2gnHy-Pd8C_1dN9pyGPCZXhJ52sODrNE',
+                                brainId: 'ddcd0f8a-565e-4fb4-ba40-c884f59d5144',
+                                chatId: 'ecd2f456-4f72-4f43-a26b-d199e727544b',
+                                model: 'gpt-3.5-turbo-0613',
+                                temperature: 0,
+                                max_tokens: 150,
+                            },
+                            url: {
+                                questionUrl: `http://192.168.1.6:5050/chat/ecd2f456-4f72-4f43-a26b-d199e727544b/question?brain_id=`,
+                            },
+                            elevenLabs: {
+                                modelId: '21m00Tcm4TlvDq8ikWAM',
+                                url: 'https://api.elevenlabs.io/v1/text-to-speech/21m00Tcm4TlvDq8ikWAM?optimize_streaming_latency=0',
+                                apiKey: '3c292dd7e16bbc3f07e8c1743fff55e5',
+                            },
+                        };
+
+                        const { createClient } = supabase;
+                        const _supabase = createClient(
+                            environment.supabase.url,
+                            environment.supabase.key
+                        );
+                        _supabase.auth
+                            .signInWithPassword({
+                                email: 'abilashs003@gmail.com',
+                                password: 'xp258LEFbVbLNvi',
+                            })
+                            .then((x) => {
+                                console.log(x.data.session.access_token);
+                                localStorage.setItem(
+                                    'access_token',
+                                    x.data.session.access_token
+                                );
+                                localStorage.setItem(
+                                    'refresh_token',
+                                    x.data.session.refresh_token
+                                );
+                                // save the auth token in local storage
+                            });
+
+                        console.log('Supabase Instance: ', _supabase);
+                        var socket = io.connect('http://192.168.1.6:4000');
+                        var askAQuestionButton =
+                            document.getElementById('askQuestion');
+                        var stopRecordingButton =
+                            document.getElementById('stopRecord');
+                        var questionData = document.getElementById('voiceData');
+                        var transcript;
+                        var recognition;
+
+                        function startRecording() {
+                            recognition = new webkitSpeechRecognition();
+                            recognition.continous = true;
+                            recognition.interimResults = true;
+                            askAQuestionButton.hidden = true;
+                            stopRecordingButton.hidden = false;
+                            recognition.onresult = (event) => {
+                                console.log('event');
+                                const result =
+                                    event.results[event.results.length - 1];
+                                transcript = result[0].transcript;
+                                questionData.innerHTML = transcript;
+                            };
+                            recognition.start();
+                            console.log('Speech Recognition started');
+                        }
+
+                        function stopRecording() {
+                            console.log('stop recording');
+                            recognition.stop();
+                            askAQuestionButton.hidden = false;
+                            stopRecordingButton.hidden = true;
+                            getAnswer(questionData.innerHTML);
+                        }
+
+                        async function getAnswer(question) {
+                            var access_token =
+                                localStorage.getItem('access_token');
+
+                            await getAnswerApi({
+                                access_token: access_token,
+                                question: question,
+                            });
+                            // socket.emit('getAnswer', );
+                        }
+
+                        function elevenSpeak(text) {
+                            fetch(
+                                'http://localhost:3002/v1/text-to-speech/21m00Tcm4TlvDq8ikWAM/stream?optimize_streaming_latency=0',
+                                {
+                                    headers: {
+                                        accept: '*/*',
+                                        'accept-language': 'en-US,en;q=0.9',
+                                        'cache-control': 'no-cache',
+                                        'content-type': 'application/json',
+                                        pragma: 'no-cache',
+                                        'sec-ch-ua':
+                                            '"Not/A)Brand";v="99", "Google Chrome";v="115", "Chromium";v="115"',
+                                        'sec-ch-ua-mobile': '?1',
+                                        'sec-ch-ua-platform': '"Android"',
+                                        'sec-fetch-dest': 'empty',
+                                        'sec-fetch-mode': 'cors',
+                                        'sec-fetch-site': 'same-origin',
+                                        'xi-api-key':
+                                            '3c292dd7e16bbc3f07e8c1743fff55e5',
+                                    },
+                                    referrer: 'https://api.elevenlabs.io/docs',
+                                    referrerPolicy:
+                                        'strict-origin-when-cross-origin',
+                                    body: '{\n  "text": "string",\n  "model_id": "eleven_monolingual_v1",\n  "voice_settings": {\n    "stability": 0,\n    "similarity_boost": 0,\n    "style": 0.5,\n    "use_speaker_boost": true\n  }\n}',
+                                    method: 'POST',
+                                    mode: 'cors',
+                                    credentials: 'include',
+                                }
+                            )
+                                .then((res) => {
+                                    var fileName = '';
+                                    var num = Date.now();
+                                    fileName = `./public/newAudio/${num}.mp3`;
+                                    const writeStream =
+                                        fs.createWriteStream(fileName);
+                                    res.pipe(writeStream);
+                                    writeStream.on('finish', () => {
+                                        console.log(
+                                            'Speech generated successfully.'
+                                        );
+                                        io.emit('play', num);
+                                        return;
+                                    });
+                                })
+                                .catch((err) => {
+                                    console.log(err);
+                                });
+                        }
+
+                        function doSomething(value) {
+                            socket.emit('sendNum', value);
+                        }
+
+                        function askAQuestion() {
+                            startRecording();
+                        }
+
+                        async function getAnswerApi(data) {
+                            try {
+                                let body = {
+                                    model: environment.supabase.model,
+                                    question: `${data.question} as per the document`,
+                                    temparature:
+                                        environment.supabase.temperature,
+                                    max_tokens: environment.supabase.max_tokens,
+                                };
+
+                                // get access token from supabase
+
+                                let access_token = data.access_token;
+                                console.log(access_token);
+                                let headers = {
+                                    'Content-Type': 'application/json', // Example content type header
+                                    Authorization: `Bearer ${access_token}`, // Example authorization header
+                                };
+                                // Replace 'YOUR_API_URL' with the actual URL of the API you want to call
+                                const apiUrl = `${environment.url.questionUrl}${environment.supabase.brainId}`;
+
+                                const response = await axios
+                                    .post(apiUrl, body, { headers })
+                                    .then((res) => {
+                                        console.log(res);
+                                        socket.emit(
+                                            'playVoice',
+                                            res.data.assistant
+                                        );
+                                        elevenSpeak(res.data.assistant);
+                                        // speakText(res.data.assistant);
+                                    });
+
+                                // Assuming the API returns JSON data, you can access it using response.data
+                                // const details = response.assistant;
+                                // Do something with the details (e.g., print or process them)
+                                console.log('API Details:', details);
+                            } catch (error) {
+                                console.error(
+                                    'Error fetching details from API:',
+                                    error
+                                );
+                            }
+                        }
+                    </script>
+                </body>
+            </html>
+        </section>
+        <script>
+            var socket = io.connect();
+            function doSomething(value) {
+                socket.emit('sendNum', value);
+            }
+        </script>
     </body>
-
-    </html>
-    </button>
-    <!-- <button type="button" onclick="doSomething('2')">2</button>
-    <button type="button" onclick="doSomething('3')">3</button>
-    <button type="button" onclick="doSomething('4')">4</button>
-    <button type="button" onclick="doSomething('5')">5</button> -->
-  </section>
-  <script>
-    var socket = io.connect();
-    function doSomething(value) {
-      socket.emit("sendNum", value);
-    }
-  </script>
-</body>
-
 </html>

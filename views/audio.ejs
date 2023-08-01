@@ -1,57 +1,79 @@
 <!DOCTYPE html>
 <html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <title>Zoho</title>
+        <link rel="shortcut icon" href="#" />
+        <script src="/socket.io/socket.io.js"></script>
+        <style>
+            html,
+            body {
+                width: 100%;
+                height: 100%;
+                padding: 0;
+                margin: 0;
+                overflow: hidden;
+                position: fixed;
+                background-color: black;
+                color: aliceblue;
+                box-sizing: border-box;
+                font-family: 'Poppins', sans-serif;
+            }
+        </style>
+    </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-  <title>Zoho</title>
-  <link rel="shortcut icon" href="#" />
-  <script src="/socket.io/socket.io.js"></script>
-  <style>
-    html,
-    body {
-      width: 100%;
-      height: 100%;
-      padding: 0;
-      margin: 0;
-      overflow: hidden;
-      position: fixed;
-      background-color: black;
-      color: aliceblue;
-      box-sizing: border-box;
-      font-family: "Poppins", sans-serif;
-    }
-  </style>
-</head>
+    <body>
+        <h1>Zoho Chat Bot</h1>
+        <audio id="audio" src="" autoplay></audio>
+        <script>
+            var audio = document.getElementById('audio');
+            var socket = io.connect('http://192.168.1.6:4000');
 
-<body>
-  <h1>Zoho Chat Bot</h1>
-  <audio id="audio" src="" autoplay></audio>
-  <script>
-    var audio = document.getElementById("audio");
-    var socket = io.connect();
+            // Error handling for audio playback
+            audio.addEventListener('error', function (event) {
+                console.error('Audio playback error:', event);
+            });
 
-    // Error handling for audio playback
-    audio.addEventListener("error", function (event) {
-      console.error("Audio playback error:", event);
-    });
+            socket.on('connect', function () {
+                console.log('Connected to the server!');
+            });
 
-    socket.on("connect", function () {
-      console.log("Connected to the server!");
-    });
+            socket.on('getNum', function (e) {
+                if (e) {
+                    console.log('Received audio index:', e);
+                    audio.pause(); // Pause the current audio (if any) before changing the source
+                    audio.src = ''; // Reset the audio source to an empty string
+                    audio.src = `../public/audio/${e}.mp3`; // Update with the new audio file URL
+                    audio.load(); // Load the new audio source
+                    audio.play(); // Play the new audio
+                }
+            });
 
-    socket.on("getNum", function (e) {
-      if (e) {
-        console.log("Received audio index:", e);
-        audio.pause(); // Pause the current audio (if any) before changing the source
-        audio.src = ""; // Reset the audio source to an empty string
-        audio.src = `../public/audio/${e}.mp3`; // Update with the new audio file URL
-        audio.load(); // Load the new audio source
-        audio.play(); // Play the new audio
-      }
-    });
-  </script>
-</body>
+            socket.on('playAudio', (e) => {
+                console.log('event triggered');
+                speakText(e);
+            });
 
+            function speakText(text) {
+                var voices = speechSynthesis.getVoices();
+                console.log(voices);
+                console.log(text);
+
+                if ('speechSynthesis' in window) {
+                    const synth = window.speechSynthesis;
+
+                    const utterance = new SpeechSynthesisUtterance(
+                        `Hi I am Zia, ${text}`
+                    );
+                    console.log('hello');
+                    utterance.voice = voices[144];
+                    synth.speak(utterance);
+                } else {
+                    alert('Text-to-speech is not supported in this browser.');
+                }
+            }
+        </script>
+    </body>
 </html>
