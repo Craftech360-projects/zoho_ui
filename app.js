@@ -77,8 +77,8 @@ io.on("connection", (socket) => {
 
   // get question and fetch it from python api and get answer
   socket.on("getAnswer", async (data) => {
-    getAnswerApi(data)
-    //textTovoice(question);
+    // getAnswerApi(data)
+    textTovoice('Hey this is test message!');
   });
 
 });
